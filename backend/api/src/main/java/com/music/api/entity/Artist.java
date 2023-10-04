@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Artist extends User {
+public class Artist extends BaseUser {
     private String country;
 
     @ManyToMany

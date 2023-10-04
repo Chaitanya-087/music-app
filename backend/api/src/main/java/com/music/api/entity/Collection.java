@@ -8,30 +8,31 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "userFavouriteSongs")
-@NoArgsConstructor
-@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
-public class UserFavouriteSong {
+public abstract class Collection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String collectionName;
+
     @ManyToOne
     private User user;
 
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.DETACH })
-    @JoinTable(name = "user_favorite_song", joinColumns = @JoinColumn(name = "user_favourite_id"), inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private List<Song> songs = new ArrayList<>();
+    @JoinTable(name = "collection_songs", 
+            joinColumns = @JoinColumn(name = "collection_id"), 
+            inverseJoinColumns = @JoinColumn(name = "song_id")) 
+    private List<Song> songs = new ArrayList<>(); 
 }
