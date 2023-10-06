@@ -70,7 +70,7 @@ public class MusicLibraryController {
         return ResponseEntity.ok(new MessageResponse(message));
     }
 
-    //TODO: dto change!
+    // TODO: dto change!
     @GetMapping("/song/favourite/user")
     public FavouriteSongs getFavouriteSongs() {
         return songService.getAllFavouriteSongs();
@@ -82,24 +82,32 @@ public class MusicLibraryController {
     }
 
     @PostMapping("/playlist/song")
-    public String addToPlaylist(@RequestBody Map<String, Long> playlistBody) {
-        return playlistService.addToPlaylist(playlistBody.get("playlistId"), playlistBody.get("songId"));
+    public ResponseEntity<MessageResponse> addToPlaylist(@RequestBody Map<String, Long> playlistBody) {
+        playlistService.addToPlaylist(playlistBody.get("playlistId"), playlistBody.get("songId"));
+        return ResponseEntity.ok().body(new MessageResponse("created successfully"));
     }
 
     @GetMapping("/playlist/user")
     public List<Playlist> getPlaylists() {
         return playlistService.getUserPlaylists();
-    }
-//TODO: fix this
-    @GetMapping("/playlist/{playlistId}")
-    public List<SongDTO> getSongsByPlaylist(@PathVariable("playlistId") Long playlistId) {
-        return playlistService.getSongsByPlaylist(playlistId);
+        
     }
 
-    @GetMapping("/album/{albumId}")
-    public List<AlbumDTO> getAlbumById(@PathVariable("albumId") Long albumId) {
-        return albumService.getAlbumById(albumId);
+    @GetMapping("/playlist/{playlistId}")
+    public List<SongDTO> getSongsByPlaylist(@PathVariable("playlistId") Long playlistId) {
+        return playlistService.getPlaylistSongs(playlistId);
     }
+    // TODO: fix this
+    // @GetMapping("/playlist/{playlistId}")
+    // public List<SongDTO> getSongsByPlaylist(@PathVariable("playlistId") Long
+    // playlistId) {
+    // return playlistService.getSongsByPlaylist(playlistId);
+    // }
+
+    // @GetMapping("/album/{albumId}")
+    // public List<AlbumDTO> getAlbumById(@PathVariable("albumId") Long albumId) {
+    // return albumService.getAlbumById(albumId);
+    // }
 
     @GetMapping("/playlist/details")
     public List<CollectionDetailsDTO> getPlaylistDetails() {
@@ -135,6 +143,6 @@ public class MusicLibraryController {
 
     // @GetMapping("/collection/user")
     // public List<Collection> getCollections() {
-    //     return songService.getUserCollections();
+    // return songService.getUserCollections();
     // }
 }

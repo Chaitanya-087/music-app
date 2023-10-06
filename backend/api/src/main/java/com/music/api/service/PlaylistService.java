@@ -71,6 +71,11 @@ public class PlaylistService {
         return collectionDetailsDTO;
     }
 
+    public List<SongDTO> getPlaylistSongs(Long playlistId) {
+        return playlistRepository.findById(playlistId).get().getSongs().stream().map(song -> songService.createSongDTO(song))
+                .collect(java.util.stream.Collectors.toList());
+    }
+
     // //TODO:
     // public List<SongDTO> getPlaylistSongs(Long playlistId) {
     //     return playlistRepository.findById(playlistId).get().getSongs();
