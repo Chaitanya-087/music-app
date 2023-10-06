@@ -95,7 +95,7 @@ public class SongService {
         }
     }
 
-    public FavouriteSongs getAllFavouriteSongs() {
+    public FavouriteSongs getFavouriteSongs() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByUsername(authentication.getName()).get();
 
@@ -153,9 +153,11 @@ public class SongService {
         return collectionRepository.findByUser(user);
     }
 
+    
+
     public CollectionDetailsDTO getFavouriteCollectionDetailsDTO() {
         CollectionDetailsDTO collectionDetailsDTO = new CollectionDetailsDTO();
-        FavouriteSongs favouriteSongs = getAllFavouriteSongs();
+        FavouriteSongs favouriteSongs = getFavouriteSongs();
         collectionDetailsDTO.setId(favouriteSongs.getId());
         collectionDetailsDTO.setName(favouriteSongs.getCollectionName());
         collectionDetailsDTO.setType("your likings");

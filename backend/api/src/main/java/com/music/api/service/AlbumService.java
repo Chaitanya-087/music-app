@@ -36,6 +36,7 @@ public class AlbumService {
             Artist existingArtist = artistRepository.findByUsername(artist.getUsername()).orElseGet(() -> {
                 Artist newArtist = new Artist();
                 newArtist.setUsername(artist.getUsername());
+                newArtist.setCountry(artist.getCountry());
                 for (Role role : artist.getRoles()) {
                     Role existingRole = roleRepository.findByName(role.getName()).orElseGet(() -> {
                         Role newRole = new Role();

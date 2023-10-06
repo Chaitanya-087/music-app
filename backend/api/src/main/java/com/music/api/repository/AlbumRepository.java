@@ -8,4 +8,6 @@ import com.music.api.entity.Album;
 
 public interface AlbumRepository extends JpaRepository<Album, Long> {
     Optional<Album> findByTitle(String title);
+
+    
 }

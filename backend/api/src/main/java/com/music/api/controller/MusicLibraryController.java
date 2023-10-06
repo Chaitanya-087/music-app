@@ -24,6 +24,7 @@ import com.music.api.entity.Collection;
 import com.music.api.entity.FavouriteSongs;
 import com.music.api.entity.Playlist;
 import com.music.api.entity.Song;
+import com.music.api.repository.AlbumRepository;
 import com.music.api.service.AlbumService;
 import com.music.api.service.PlaylistService;
 import com.music.api.service.SongService;
@@ -41,11 +42,8 @@ public class MusicLibraryController {
     @Autowired
     private PlaylistService playlistService;
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    public String getMusic() {
-        return "Music Library";
-    }
+    @Autowired
+    private AlbumRepository albumRepository;
 
     @PostMapping("/song")
     public Song addSong(@RequestBody SongBody song) {
@@ -58,7 +56,7 @@ public class MusicLibraryController {
     }
 
     @PostMapping("/album")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    // @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     public Album addAlbum(@RequestBody Album album) {
         System.out.println("album: " + album);
         return albumService.addAlbum(album);
@@ -70,10 +68,11 @@ public class MusicLibraryController {
         return ResponseEntity.ok(new MessageResponse(message));
     }
 
-    // TODO: dto change!
     @GetMapping("/song/favourite/user")
-    public FavouriteSongs getFavouriteSongs() {
-        return songService.getAllFavouriteSongs();
+    public List<SongDTO> getFavouriteSongs() {
+
+        return songService.getFavouriteSongs().getSongs().stream().map(song -> songService.createSongDTO(song))
+                .collect(java.util.stream.Collectors.toList());
     }
 
     @PostMapping("/playlist")
@@ -90,23 +89,18 @@ public class MusicLibraryController {
     @GetMapping("/playlist/user")
     public List<Playlist> getPlaylists() {
         return playlistService.getUserPlaylists();
-        
+
     }
 
     @GetMapping("/playlist/{playlistId}")
     public List<SongDTO> getSongsByPlaylist(@PathVariable("playlistId") Long playlistId) {
         return playlistService.getPlaylistSongs(playlistId);
     }
-    // TODO: fix this
-    // @GetMapping("/playlist/{playlistId}")
-    // public List<SongDTO> getSongsByPlaylist(@PathVariable("playlistId") Long
-    // playlistId) {
-    // return playlistService.getSongsByPlaylist(playlistId);
-    // }
 
-    // @GetMapping("/album/{albumId}")
-    // public List<AlbumDTO> getAlbumById(@PathVariable("albumId") Long albumId) {
-    // return albumService.getAlbumById(albumId);
+    // @GetMapping("/album/{id}")
+    // public List<SongDTO> getSongsByAlbum(@PathVariable("id") Long id) {
+    //     Album album = albumRepository.findById(id).get();
+    //     return songService.getSongsByAlbum(album);
     // }
 
     @GetMapping("/playlist/details")
@@ -126,7 +120,7 @@ public class MusicLibraryController {
         return songService.getGenres();
     }
 
-    @GetMapping("/song/{genre}")
+    @GetMapping("/song/genre/{genre}")
     public List<SongDTO> getSongsByGenre(@PathVariable("genre") String genre) {
         return songService.getSongsByGenre(genre);
     }
