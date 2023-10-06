@@ -15,6 +15,8 @@ import { SearchComponent } from './search/search.component';
 import { SongsComponent } from './songs/songs.component';
 import { SongComponent } from './song/song.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { GenreComponent } from './genre/genre.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { PlaylistComponent } from './playlist/playlist.component';
     SearchComponent,
     SongsComponent,
     SongComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    GenreComponent,
+    FavouriteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 <div class="container bg-light-dark">
-    <div class="group">
+    <h1>Genre: {{name}}</h1>
+    <div class="genres">
         <app-song *ngFor="let song of songs" [song]="song" ></app-song>
     </div>
 </div>

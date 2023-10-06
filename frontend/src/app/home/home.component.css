@@ -8,15 +8,20 @@
   padding-inline: 1rem;
   gap: 1rem;
 }
+.bg-light-dark {
+  background-color: #242323d7;
+}
 .spec-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.genres,.albums,.recentSongs {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+.genres,
+.albums,
+.recentSongs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 .spec-container > * {
   display: flex;
@@ -36,7 +41,4 @@
   padding: 1rem;
   border-radius: 0 0.25rem 0.25rem 0;
   border-left: 5px solid #b9271d;
-}
-.bg-light-dark {
-  background-color: #242323d7;
 }

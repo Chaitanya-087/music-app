@@ -40,4 +40,16 @@ export class MusicLibraryService {
   addToPlayList(songId: number, playlistId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/playlist/song`, {playlistId: playlistId, songId: songId});
   }
+
+  getSongsByGenre(genre: string): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiUrl}/song/genre/${genre}`);
+  }
+
+  getPlaylistById(id: number): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiUrl}/playlist/${id}`);
+  }
+
+  getfavoriteSongs(): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiUrl}/song/favourite/user`);
+  }
 }

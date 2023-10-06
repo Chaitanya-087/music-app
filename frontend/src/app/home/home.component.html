@@ -9,7 +9,7 @@
   <div class="spec-container">
     <h4>genre</h4>
     <div class="generes">
-      <div *ngFor="let genre of genres" class="genre">
+      <div *ngFor="let genre of genres" class="genre" routerLink="/genre/{{genre}}">
         {{ genre }}
       </div>
     </div>
