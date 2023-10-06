@@ -3,7 +3,7 @@
         <div class="title">
             <fa-icon [icon]="faLibrary"></fa-icon>
             Your Library</div>
-        <button class="btn-create" title="Create playlist">+</button>
+        <button class="btn-create" title="Create playlist" (click)="openModal()">+</button>
     </div>
     <div></div>
     <!-- {{playlistDetails | json}} -->
@@ -18,6 +18,13 @@
                     <span>{{playlist.count}}</span>
                 </div>
             </div>
+        </div>
+    </div>
+    <div *ngIf="isOpen" class="overlay">
+        <div class="container">
+            <input type="text" #name placeholder="enter name of playlist"/>
+            <button class="btn-create btn" (click)="createPlaylist(name.value)">create</button>
+            <button class="btn-cancel btn" (click)="closeModal()">cancel</button>
         </div>
     </div>
 </div>

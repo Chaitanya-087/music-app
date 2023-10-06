@@ -6,6 +6,7 @@ export interface Song {
     genre: string,
     duration: string,
     albumTitle?: string,
-    favoritesCount: number,
+    favouritesCount: number,
+    favourited: boolean,
     artists: Artist[]
 }

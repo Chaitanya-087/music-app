@@ -28,4 +28,16 @@ export class MusicLibraryService {
   getPlaylistDetails(): Observable<playlistDetails[]> {
     return this.http.get<playlistDetails[]>(`${this.apiUrl}/playlist/details`);
   }
+
+  favoriteSong(songId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/song/favourite`, {id: songId});
+  }
+
+  createPlaylist(playlistName: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/playlist`, {name: playlistName});
+  }
+
+  addToPlayList(songId: number, playlistId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/playlist/song`, {playlistId: playlistId, songId: songId});
+  }
 }

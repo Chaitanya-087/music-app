@@ -1,0 +1,60 @@
+.container {
+    width: 300px;
+    height: 100px;
+    background: url(https://img.freepik.com/free-vector/golden-music-speaker-with-sound-notes-background_1017-36829.jpg?w=900&t=st=1696572500~exp=1696573100~hmac=01ae7db991d96bf94b000256e242b8513b4060557c29a4720a204822b093cf07);
+    background-color: rgba(0, 0, 0, 0.753);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.btn-fav {
+    position: absolute; 
+    top:0.5rem;
+    right:0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-options {
+    position: absolute; 
+    bottom:0.5rem;
+    right:0.5rem;
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1db954;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    background-color: black;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+}
+.btn-cancel {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #1db954;
+    border-radius: 15px;
+    z-index: 9999;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}

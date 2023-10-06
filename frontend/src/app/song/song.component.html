@@ -1,5 +1,27 @@
 <div class="container">
-    <div class="details">
-        <p>{{song.title}}</p>
+  <!-- {{song | json}} -->
+  <div class="details">
+    <p>{{ song.title }}</p>
+    <!-- <span>{{ song.albumTitle }}</span> -->
+    <div class="artists">
+      <span *ngFor="let artist of song.artists"
+        >{{ artist.username }} ({{ artist.roles[0].name }})</span
+      >
     </div>
+    <span> {{ song.favouritesCount }} likes </span>
+    <button class="btn-fav" (click)="favoriteSong(song.id)" >
+        <fa-icon [ngStyle]="{'color': song.favourited ? '#1db954':'white'}" [icon]="faHeart"></fa-icon>
+    </button>
+    <button class="btn-options" (click)="openModal()">
+      <fa-icon [icon]="faBurger"></fa-icon>
+      <div *ngIf="isOpen" class="options">
+        <div *ngFor="let playlist of playlistDetails">
+          <div (click)="addToPlayList(song.id,playlist.id)">Add to {{playlist.name}}</div>
+        </div>
+        <button class="btn-cancel" (click)="closeModal()">
+          cancel
+        </button>
+      </div>
+    </button>
+  </div>
 </div>

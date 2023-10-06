@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class LibraryComponent {
   faLibrary = faLayerGroup;
   playlistDetails: any[] = [];
+  isOpen: boolean = false;
   constructor(private musicLibraryService: MusicLibraryService, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -18,5 +19,20 @@ export class LibraryComponent {
 
   getPlaylistsDetails() {
     this.musicLibraryService.getPlaylistDetails().subscribe(res => this.playlistDetails = res)
+  }
+
+  openModal() {
+    this.isOpen = true;
+  }
+
+  closeModal() {
+    this.isOpen = false;
+  }
+
+  createPlaylist(playlistName: string) {
+    this.musicLibraryService.createPlaylist(playlistName).subscribe(res => {
+      this.getPlaylistsDetails();
+      this.closeModal();
+    });
   }
 }
