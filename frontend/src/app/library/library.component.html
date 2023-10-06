@@ -1,0 +1,23 @@
+<div class="container bg-light-dark">
+    <div class="details">
+        <div class="title">
+            <fa-icon [icon]="faLibrary"></fa-icon>
+            Your Library</div>
+        <button class="btn-create" title="Create playlist">+</button>
+    </div>
+    <div></div>
+    <!-- {{playlistDetails | json}} -->
+    <div *ngIf="this.authService.isLoggedIn | async" class="playlists">
+        <div *ngFor="let playlist of playlistDetails" class="playlist">
+            <img src="https://i.pinimg.com/originals/ea/70/75/ea707569ecc64bb0cf6c5165f8a9b392.jpg" class="img-playlist" alt="">
+            <div>
+                <p class="title">{{playlist.name}}</p>
+                <div class="extras">
+                    <span>{{playlist.type}}</span>
+                    <span>.</span>
+                    <span>{{playlist.count}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

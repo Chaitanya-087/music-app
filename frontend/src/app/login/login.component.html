@@ -1,0 +1,22 @@
+<div class="overlay">
+  <div class="container">
+    <h2>Login</h2>
+    <form
+      #loginForm="ngForm"
+      method="post"
+      (ngSubmit)="login(loginForm)"
+      class="form"
+    >
+      <div class="group">
+        <label for="username">username:</label>
+        <input type="email" id="email" name="username" ngModel required />
+      </div>
+      <div class="group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" ngModel required />
+      </div>
+
+      <button type="submit" class="btn-login">login</button>
+    </form>
+  </div>
+</div>

@@ -28,7 +28,7 @@ public class Album {
     private Long id;
     private String title;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "album_artist", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "artist_id"))
     private List<Artist> artists = new ArrayList<>();
 }

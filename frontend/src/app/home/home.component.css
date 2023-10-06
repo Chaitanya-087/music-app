@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;    
+    border-radius: 0.45rem;
+    padding-block-start: 3rem;
+    padding-block-end: 2rem;
+    padding-inline: 1rem;
+}
+
+.bg-light-dark {
+    background-color: #242323d7;
+}

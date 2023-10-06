@@ -1,0 +1,26 @@
+.bg-light-dark {
+    background-color: #242323d7;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius:0.45rem;
+}
+
+.nav-link {
+    opacity: 50%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.active {
+    opacity: 100%;
+}
+
+.nav-link:hover {
+    opacity: 100%;
+}

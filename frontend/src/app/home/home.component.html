@@ -1,0 +1,16 @@
+<div class="container bg-light-dark">
+  <h4>Recently added</h4>
+  <div class="recentSongs">
+    <app-song *ngFor="let song of recentSongs" [song]="song"></app-song>
+  </div>
+  {{ recentSongs | json }}
+
+  <div class="generes">
+    <div *ngFor="let genre of genres"></div>
+  </div>
+  <h4>genre</h4>
+  {{ genres }}
+
+  <h4>albums</h4>
+  {{ albumDetails | json }}
+</div>
